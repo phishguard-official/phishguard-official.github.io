@@ -3,19 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>PhishGuard Sentinel</title>
-    <meta name="description" content="Bezplatný bezpečnostní nástroj vyvíjený v ČR, který chrání před phishingem a podvody v reálném čase">
-    <meta name="keywords" content="PhishGuard Sentinel, PhishGuard, phishing, anti-phishing, kybernetická bezpečnost, kyberbezpečnost, ochrana před phishingem, detekce phishingu, blokování podvodných stránek, bezpečný internet, ochrana na internetu, bezpečnostní software, lokální AI, umělá inteligence, komunitní ochrana, český bezpečnostní projekt, ochrana prohlížeče, bezpečnost zdarma, SOČ, KyberCena Roku">
-
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://phishguard-official.github.io">
-    <meta property="og:title" content="PhishGuard Sentinel | Ochrana před webovými hrozbami">
-    <meta property="og:description" content="Chraňte sebe i své blízké před podvody na internetu. Stáhněte si bezplatnou Beta verzi pro Windows.">
-    <meta property="og:image" content="https://phishguard-official.github.io/image_1.png">
-    <meta name="google-site-verification" content="vkawl6_aZMwl7qgRtgnlzxYVGc0ScL-H1Dy7qmIGKvE" />
-    <meta name="seznam-wmt" content="kYfmOCqB8a3Y0FIZuAuRcw8wiARMjuFc" />
-
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { background-color: #0f172a; color: #f8fafc; font-family: 'Segoe UI', system-ui, sans-serif; }
@@ -35,8 +23,8 @@
                 
                 <div class="hidden md:block">
                     <div class="flex items-center space-x-6">
-                        <a href="#vlastnosti" class="text-slate-400 hover:text-white text-sm font-medium transition-colors">Jak to funguje</a>
-                        <a href="#oceneni" class="text-slate-400 hover:text-white text-sm font-medium transition-colors">Ocenění</a>
+                        <a href="manual.html" class="text-slate-400 hover:text-white text-sm font-medium transition-colors">Návod k použití</a>
+                        <a href="patchnotes.html" class="text-slate-400 hover:text-white text-sm font-medium transition-colors">Verze</a>
                         <a href="#download" class="bg-orange-600 hover:bg-orange-500 text-white px-5 py-2 rounded text-sm font-bold transition-colors">Stáhnout Beta verzi</a>
                     </div>
                 </div>
@@ -47,19 +35,25 @@
     <section class="pt-24 pb-16 lg:pt-32 lg:pb-24 px-4">
         <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12">
             <div class="lg:w-1/2">
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-6 text-white">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-6 text-white text-balance">
                     Bezpečnost na internetu.<br>
-                    <span class="text-orange-500">Nekompromisní, jednoduchá a pro všechny.</span>
+                    <span class="text-orange-500 italic uppercase tracking-tighter">Nekompromisní, jednoduchá a pro všechny.</span>
                 </h1>
-                <p class="mt-4 text-lg text-slate-400 mb-8 max-w-xl">
-                    Bezplatný bezpečnostní nástroj, který chrání před podvody v reálném čase. Běží tiše na pozadí, nezatěžuje počítač a nevyžaduje žádné složité nastavování.
-                </p>
+                
+                <div class="mb-8 p-4 bg-slate-800/50 border-l-4 border-orange-600 rounded-r-lg max-w-md">
+                    <h3 class="text-white font-bold text-sm mb-2 uppercase tracking-wide">Systémové požadavky</h3>
+                    <ul class="text-slate-400 text-sm space-y-1">
+                        <li class="flex items-center gap-2">✅ OS: <span class="text-white font-medium">Windows 10 / 11 (64-bit)</span></li>
+                        <li class="flex items-center gap-2">✅ Prohlížeč: <span class="text-white font-medium">Google Chrome</span></li>
+                    </ul>
+                </div>
+
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#download" class="bg-orange-600 hover:bg-orange-500 text-white font-bold py-3 px-8 rounded text-lg transition-colors text-center">
+                    <a href="#download" class="bg-orange-600 hover:bg-orange-500 text-white font-bold py-3 px-8 rounded text-lg transition-colors text-center shadow-lg shadow-orange-900/20">
                         Stáhnout pro Windows
                     </a>
-                    <a href="#vlastnosti" class="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-semibold py-3 px-8 rounded text-lg transition-colors text-center">
-                        Dozvědět se více
+                    <a href="manual.html" class="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-semibold py-3 px-8 rounded text-lg transition-colors text-center">
+                        Návod k instalaci
                     </a>
                 </div>
             </div>
@@ -72,67 +66,48 @@
         </div>
     </section>
 
-    <section id="oceneni" class="py-16 bg-slate-900 border-y border-slate-800">
-        <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-8 text-center">Nezávisle oceněný projekt</h2>
+    <section class="py-16 bg-[#0B1120] px-4">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold mb-8 text-white text-center italic">Co je PhishGuard Sentinel?</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                <div class="bg-slate-800 border border-slate-700 p-6 rounded-lg">
-                    <h3 class="font-bold text-lg mb-4 text-orange-500 flex items-center gap-2">
-                        <span>🎓</span> Středoškolská odborná činnost
-                    </h3>
-                    <ul class="space-y-3 text-sm">
-                        <li class="flex justify-between items-center border-b border-slate-700/50 pb-2">
-                            <span class="text-slate-300">Okresní kolo (Plzeň - Město)</span> 
-                            <span class="text-white font-bold">1. místo</span>
-                        </li>
-                        <li class="flex justify-between items-center border-b border-slate-700/50 pb-2">
-                            <span class="text-slate-300">Krajské kolo (Plzeňský kraj)</span> 
-                            <span class="text-white font-bold">2. místo</span>
-                        </li>
-                        <li class="flex justify-between items-center">
-                            <span class="text-slate-300">Celorepublikové finále</span> 
-                            <span class="text-white font-bold">8. místo</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="bg-slate-800 border border-slate-700 p-6 rounded-lg flex flex-col justify-center">
-                    <h3 class="font-bold text-lg mb-2 text-orange-500 flex items-center gap-2">
-                        <span>🏆</span> KyberCena Roku
-                    </h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">
-                        Projekt nominován na KyberCenu Roku 2025 v kategorii "Projekt Roku"
-                    </p>
-                </div>
+            <div class="space-y-6 text-slate-300 leading-relaxed text-lg text-balance">
+                <p>
+                    Většina běžných antivirů se soustředí na viry stažené do počítače. PhishGuard Sentinel řeší jiný problém: <strong>klamavé webové stránky</strong>.
+                </p>
+                <p>
+                    Dnešní podvodníci vytvářejí dokonalé kopie bank, e-shopů nebo sociálních sítí s jediným cílem – získat vaše hesla nebo platební údaje. Běžným okem je často nemožné rozeznat originál od padělku. 
+                </p>
+                <p>
+                    PhishGuard funguje jako váš osobní strážce přímo v prohlížeči. Při každém načtení stránky provede bleskovou, komplexní analýzu struktury a obsahu webu. Pokud detekuje nesrovnalosti nebo pokus o manipulaci, okamžitě vás upozorní zřetelným varováním dříve, než stačíte cokoliv zadat.
+                </p>
+                <p class="text-orange-400 font-semibold italic">
+                    Vše probíhá tiše na pozadí vašeho počítače. Nikam se neposílají vaše osobní data, ochrana je plynulá a nevyžaduje žádné složité nastavování.
+                </p>
             </div>
         </div>
     </section>
 
-    <section id="vlastnosti" class="py-20 px-4">
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-12 max-w-2xl">
-                <h2 class="text-3xl font-bold mb-4 text-white">Technologie pod kapotou</h2>
-                <p class="text-slate-400">PhishGuard nenahrazuje běžný antivir. Zaměřuje se výhradně na webové podvody, u kterých klasické ochrany často selhávají.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-slate-800/50 border border-slate-700 p-8 rounded-lg transition-transform hover:-translate-y-1 hover:border-orange-500/50">
-                    <div class="text-orange-500 text-2xl mb-4">01</div>
-                    <h3 class="text-xl font-bold mb-3 text-white">Lokální Engine</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Nespoléhá se na zpožděné aktualizace databází. Nástroj přímo ve vašem počítači analyzuje a vyhodnocuje důvěryhodnost webových stránek které navštěvujete</p>
+    <section id="oceneni" class="py-16 bg-slate-900 border-y border-slate-800">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-8 text-center">Nezávisle oceněný projekt</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <div class="bg-slate-800 border border-slate-700 p-6 rounded-lg">
+                    <h3 class="font-bold text-lg mb-4 text-orange-500 flex items-center gap-2"><span>🎓</span> Středoškolská odborná činnost 2025</h3>
+                    <ul class="space-y-3 text-sm italic">
+                        <li class="flex justify-between items-center border-b border-slate-700/50 pb-2">
+                            <span class="text-slate-300">Okresní kolo</span> <span class="text-white font-bold text-lg">1. místo</span>
+                        </li>
+                        <li class="flex justify-between items-center border-b border-slate-700/50 pb-2">
+                            <span class="text-slate-300">Krajské kolo</span> <span class="text-white font-bold text-lg">2. místo</span>
+                        </li>
+                        <li class="flex justify-between items-center italic">
+                            <span class="text-slate-300">Celorepublikové finále</span> <span class="text-white font-bold text-lg">8. místo</span>
+                        </li>
+                    </ul>
                 </div>
-                
-                <div class="bg-slate-800/50 border border-slate-700 p-8 rounded-lg transition-transform hover:-translate-y-1 hover:border-orange-500/50">
-                    <div class="text-orange-500 text-2xl mb-4">02</div>
-                    <h3 class="text-xl font-bold mb-3 text-white">Bleskový Whitelist</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Ověřené a bezpečné weby aplikace rozezná okamžitě. Výpočetní výkon se aktivuje pouze tehdy, když narazíte na neznámou nebo podezřelou doménu.</p>
-                </div>
-                
-                <div class="bg-slate-800/50 border border-slate-700 p-8 rounded-lg transition-transform hover:-translate-y-1 hover:border-orange-500/50">
-                    <div class="text-orange-500 text-2xl mb-4">03</div>
-                    <h3 class="text-xl font-bold mb-3 text-white">Komunitní ochrana</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Když systém detekuje nový phishing u jednoho uživatele, dokáže informaci bezpečně sdílet. Zbytek sítě je tak chráněn téměř okamžitě.</p>
+                <div class="bg-slate-800 border border-slate-700 p-6 rounded-lg flex flex-col justify-center italic">
+                    <h3 class="font-bold text-lg mb-2 text-orange-500 flex items-center gap-2"><span>🏆</span> KyberCena Roku</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed italic">Projekt nominován na KyberCenu Roku 2025 v kategorii "Projekt Roku"</p>
                 </div>
             </div>
         </div>
@@ -140,33 +115,30 @@
 
     <section id="download" class="py-20 bg-slate-900 border-t border-slate-800 text-center px-4">
         <div class="max-w-2xl mx-auto">
-            <h2 class="text-3xl font-bold mb-4 text-white">Vyzkoušejte PhishGuard Sentinel</h2>
-            <p class="text-slate-400 mb-8">Aplikace je momentálně ve fázi veřejného Beta testování. Je zcela zdarma a neobsahuje žádné reklamy.</p>
+            <h2 class="text-3xl font-black mb-4 text-white uppercase italic tracking-tighter">Vyzkoušejte PhishGuard Sentinel</h2>
+            <p class="text-slate-400 mb-8 italic text-sm">Beta verze je zdarma pro všechny, bez reklam</p>
             <a href="PhishGuard_Setup.exe" class="inline-flex items-center justify-center gap-2 bg-orange-600 hover:bg-orange-500 text-white font-bold py-4 px-8 rounded transition-colors transform hover:scale-105 shadow-[0_0_20px_rgba(249,115,22,0.4)] w-full sm:w-auto">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                 Stáhnout instalátor (Windows)
             </a>
-            <p class="mt-4 text-slate-500 text-xs uppercase tracking-wider">Verze 1.0.0 Beta &bull; ~250 MB</p>
-            <p class="mt-4 text-slate-500 text-xs uppercase tracking-wider">Windows 10/11 &bull; Google Chrome</p>
+            <p class="mt-4 text-slate-500 text-[10px] uppercase tracking-widest">v1.0.0 Beta &bull; Windows 10/11 &bull; Google Chrome</p>
         </div>
     </section>
 
-    <footer class="bg-[#0f172a] pt-16 pb-8 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between gap-12">
-            
-            <div class="md:w-1/2">
-                <div class="flex items-center gap-2 font-bold text-lg mb-4 text-white">
+    <footer class="bg-[#0f172a] pt-16 pb-8 border-t border-slate-800 px-4">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-12">
+            <div class="md:w-1/2 italic text-sm">
+                <div class="flex items-center gap-2 font-bold text-lg mb-4 text-white not-italic">
                     <div class="bg-white p-1 rounded border border-slate-700 flex items-center justify-center shadow-inner">
                         <img src="image_0.png" alt="PhishGuard Icon" class="h-6 w-auto" />
                     </div>
                     PhishGuard Sentinel
                 </div>
-                <p class="text-slate-500 text-sm max-w-sm mb-6">
-                    Nezávislý bezpečnostní studenstký projekt vyvíjený v České republice s cílem chránit běžné uživatele před webovými podvody.
-                </p>
-                <p class="text-slate-600 text-xs">&copy; 2026 PhishGuard Sentinel. Všechna práva vyhrazena.</p>
+                <p class="text-slate-500 max-w-sm mb-6 leading-relaxed">Nezávislý bezpečnostní studentský projekt vyvíjený v České republice s cílem chránit běžné uživatele před webovými podvody.</p>
+                <div class="flex gap-4 mb-6">
+                    <a href="privacy.html" class="text-orange-500 hover:text-orange-400 font-bold underline decoration-orange-500/30 transition-colors">Ochrana soukromí (GDPR)</a>
+                </div>
+                <p class="text-slate-700">&copy; 2026 PhishGuard Sentinel. Všechna práva vyhrazena.</p>
             </div>
-
             <div class="md:w-1/3 w-full bg-slate-800/30 p-5 rounded border border-slate-700/50">
                 <h4 class="font-bold mb-3 text-white text-sm">Našli jste chybu? Dejte nám vědět.</h4>
                 <form action="https://formspree.io/f/mwvwepln" method="POST" class="flex flex-col gap-3">
@@ -178,6 +150,5 @@
             </div>
         </div>
     </footer>
-
 </body>
 </html>
