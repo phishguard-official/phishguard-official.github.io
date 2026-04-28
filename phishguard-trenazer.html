@@ -58,7 +58,7 @@
   /* Landing */
   .landing-container { width: 100%; max-width: 600px; padding: 48px; }
   .logo-lockup { display: flex; align-items: center; gap: 14px; margin-bottom: 32px; justify-content: center; }
-  .logo-icon { width: 48px; height: 48px; background: white; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--brand); font-size: 28px; }
+  .logo-icon { width: 48px; height: 48px; background: white; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--brand); font-size: 28px; overflow: hidden; }
   .logo-name { font-size: 20px; font-weight: 800; letter-spacing: -0.5px; }
   .logo-sub { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
   .landing-headline { font-size: 2.2rem; font-weight: 800; line-height: 1.2; margin-bottom: 16px; letter-spacing: -1px; text-align: center; }
@@ -101,7 +101,6 @@
   .email-link { color: #3b82f6; text-decoration: underline; font-weight: 600; font-family: 'JetBrains Mono', monospace; cursor: help; padding: 2px 4px; border-radius: 4px; transition: 0.2s; }
   .email-link:hover { background: rgba(59, 130, 246, 0.1); }
 
-  /* Falešný stavový řádek prohlížeče (Zobrazí se při najetí myší na odkaz) */
   .browser-status { position: absolute; bottom: 0; left: 0; background: #e2e8f0; color: #0f172a; padding: 4px 12px; font-size: 12px; font-family: sans-serif; border-top-right-radius: 6px; border-bottom-left-radius: var(--radius-lg); opacity: 0; pointer-events: none; transition: opacity 0.2s; z-index: 5; box-shadow: 2px -2px 10px rgba(0,0,0,0.2); max-width: 90%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .browser-status.visible { opacity: 1; }
 
@@ -155,7 +154,10 @@
   <section id="phase-landing" class="phase active">
     <div class="card landing-container">
       <div class="logo-lockup">
-        <div class="logo-icon"><i class="ph-bold ph-shield-check"></i></div>
+        <div class="logo-icon">
+            <img src="logo-light.png" alt="PhishGuard" style="width: 100%; height: 100%; object-fit: contain;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+            <i class="ph-bold ph-shield-check" style="display: none;"></i>
+        </div>
         <div style="text-align: left;">
           <div class="logo-name">PhishGuard</div>
           <div class="logo-sub">Security Trenažér</div>
@@ -267,8 +269,6 @@
 </div>
 
 <script>
-// ── DATABÁZE OTÁZEK (15 Scénářů ve 3 úrovních) ──
-// NOVINKA: Parametr realUrl určuje, co se zobrazí po najetí myší na .email-link
 const QUESTIONS = {
   "Základní": [
     { type: 'email', from: "info@ceskaposta.zasilky-cz.com", name: "Česká pošta", subject: "Váš balíček čeká na doručení", realUrl: "https://ceskaposta-platba-online.com/zasilka", body: "Vážený zákazníku,<br><br>vaše zásilka byla pozastavena z důvodu nedoplatku cla 39 Kč. Zaplaťte prosím do 24 hodin na odkazu níže, jinak balíček vrátíme.<br><br><a class='email-link' href='javascript:void(0)' onmouseenter='showUrl(this)' onmouseleave='hideUrl()'>ceskaposta.cz/zasilka</a>", isPhishing: true, flags: ["Falešná doména (zasilky-cz.com)", "Nátlak na malou částku", "Umělá urgence (24 hodin)", "Tip: Po najetí myší odkaz vede jinam, než se tváří."] },
@@ -324,7 +324,6 @@ function showPhase(id) {
   window.scrollTo(0,0);
 }
 
-// Funkce pro simulaci stavového řádku prohlížeče
 function showUrl(el) {
   const url = QUESTIONS[state.level][state.qIndex].realUrl;
   if (!url) return;
@@ -388,7 +387,7 @@ function renderQuestion() {
 }
 
 function answer(userSaysPhishing) {
-  hideUrl(); // Schovat tooltip, pokud zustal viset
+  hideUrl();
   const q = state.activeData[state.qIndex];
   const isCorrect = (userSaysPhishing === q.isPhishing);
   if(isCorrect) state.score++;
@@ -456,7 +455,8 @@ function prepareCertificateHTML(pct) {
       <div style="position: absolute; opacity: 0.03; transform: rotate(-15deg); font-size: 160px; font-weight: 900; letter-spacing: -5px; pointer-events: none;">PHISHGUARD</div>
 
       <div style="margin-bottom: 30px; z-index: 1;">
-        <svg width="70" height="70" viewBox="0 0 256 256" style="fill: #f97316;"><path d="M208,40H48A16,16,0,0,0,32,56v58.77c0,89.61,75.82,119.34,91,124.39a15.53,15.53,0,0,0,10,0c15.2-5.05,91-34.78,91-124.39V56A16,16,0,0,0,208,40ZM128,222.4C106.67,214.33,48,181.76,48,114.77V56H208v58.77C208,181.76,149.33,214.33,128,222.4ZM179.31,99.31a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L117.66,149.66l50.33-50.35A8,8,0,0,1,179.31,99.31Z"/></svg>
+        <img src="logo-dark.png" alt="PhishGuard Logo" style="height: 70px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+        <svg width="70" height="70" viewBox="0 0 256 256" style="fill: #f97316; display: none;"><path d="M208,40H48A16,16,0,0,0,32,56v58.77c0,89.61,75.82,119.34,91,124.39a15.53,15.53,0,0,0,10,0c15.2-5.05,91-34.78,91-124.39V56A16,16,0,0,0,208,40ZM128,222.4C106.67,214.33,48,181.76,48,114.77V56H208v58.77C208,181.76,149.33,214.33,128,222.4ZM179.31,99.31a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L117.66,149.66l50.33-50.35A8,8,0,0,1,179.31,99.31Z"/></svg>
       </div>
       
       <h3 style="color: #f97316; font-size: 18px; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 15px; font-weight: 800; z-index: 1;">PhishGuard Sentinel</h3>
