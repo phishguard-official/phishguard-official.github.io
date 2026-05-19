@@ -21,14 +21,18 @@
             <div class="grid gap-6">
                 <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
                     <p class="font-bold text-orange-500 mb-2">Krok 1: Spuštění instalátoru</p>
-                    <p class="text-slate-400 text-sm">Po stažení souboru <code class="bg-slate-900 px-2 py-1 rounded">PhishGuard_Setup.exe</code> jej spusťte. Pokud Windows zobrazí varování "SmartScreen", klikněte na <strong>"Další informace"</strong> a poté na <strong>"Přesto spustit"</strong>.</p>
+                    <p class="text-slate-400 text-sm">Po stažení souboru <code class="bg-slate-900 px-2 py-1 rounded">PhishGuard_Setup.exe</code> jej spusťte.</p>
+                    
+                    <div class="mt-4 bg-orange-950/40 border-l-4 border-orange-500 p-3 rounded-r-lg text-sm text-orange-200">
+                        <strong>🛡️ Upozornění Windows Defender:</strong> Vzhledem k tomu, že je program nový, může ho při prvním spuštění zablokovat modrá obrazovka "SmartScreen". V takovém případě klikněte na text <strong>"Další informace"</strong> a poté na tlačítko <strong>"Přesto spustit"</strong>.
+                    </div>
                 </div>
                 <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
                     <p class="font-bold text-orange-500 mb-2">Krok 2: Instalace v Program Files</p>
                     <p class="text-slate-400 text-sm">Program se standardně nainstaluje do vaší systémové složky. Po dokončení se PhishGuard automaticky spustí – uvidíte úvodní animaci (Splash Screen).</p>
                 </div>
                 <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
-                    <p class="font-bold text-orange-500 mb-2">Krok 3: Aktivace v Google Chrome</p>
+                    <p class="font-bold text-orange-500 mb-2">Krok 3: Aktivace v Prohlížeči</p>
                     <p class="text-slate-400 text-sm">Po dokončení instalace se automaticky spustí interaktivní tutoriál. V něm si jednoduše vyberte prohlížeč, který používáte, a průvodce vás krok za krokem navede k přidání rozšíření. Tento krok je naprosto nezbytný – rozšíření funguje jako „oči“ celého systému. Bez něj PhishGuard neuvidí obsah navštěvovaných stránek a nebude vás moci včas varovat před podvodem.</p>
                 </div>
             </div>
@@ -59,6 +63,33 @@
                         <p class="font-bold text-red-500 uppercase italic">🛑 Ukončit ochranu</p>
                         <p class="text-sm text-slate-400 italic">Kompletně vypne PhishGuard Sentinel a ukončí veškeré ochranné procesy. Váš prohlížeč v ten moment přestane být chráněn!</p>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-20">
+            <h2 class="text-2xl font-bold mb-6 text-white flex items-center gap-2 italic uppercase tracking-tighter underline decoration-orange-600">
+                <span class="bg-orange-600 text-white w-8 h-8 rounded-full flex items-center justify-center not-italic text-sm">03</span>
+                Jak fungují aktualizace
+            </h2>
+            <div class="grid gap-6">
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                    <p class="font-bold text-orange-500 mb-2">Krok 1: Stažení nové verze</p>
+                    <p class="text-slate-400 text-sm">Jakmile je dostupná nová vylepšená verze, PhishGuard vás na ni upozorní hned po svém startu vyskakovacím oknem. Stačí kliknout na <strong>"Ano"</strong> a automaticky se vám stáhne nový instalační <code class="bg-slate-900 px-2 py-1 rounded">.exe</code> soubor.</p>
+                </div>
+                <div class="bg-slate-800 p-6 rounded-xl border border-red-900/50 shadow-[0_0_15px_rgba(239,68,68,0.1)]">
+                    <p class="font-bold text-red-400 mb-2">Krok 2: Kontrola vypnutí staré verze (Důležité!)</p>
+                    <p class="text-slate-400 text-sm">Při stahování updatu by se měla stará verze ukončit sama, ale <strong>vždy to pro jistotu zkontrolujte</strong>, jinak nová instalace selže. Podívejte se do pravého dolního rohu k hodinám (případně pod šipku nahoru "Zobrazit skryté ikony"). Pokud tam ikonka PhishGuardu stále je, klikněte na ni pravým tlačítkem a zvolte <strong>"🛑 Ukončit ochranu"</strong>. Pokud už tam není, je vše v pořádku a můžete pokračovat.</p>
+                </div>
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                    <p class="font-bold text-orange-500 mb-2">Krok 3: Instalace updatu</p>
+                    <p class="text-slate-400 text-sm mb-4">Nyní můžete bezpečně spustit stažený soubor. Instalátor automaticky přepíše staré soubory těmi nejnovějšími.</p>
+                    
+                    <div class="bg-orange-950/40 border-l-4 border-orange-500 p-3 rounded-r-lg text-sm text-orange-200 mb-4">
+                        <strong>🛡️ Upozornění Windows Defender:</strong> Stejně jako při první instalaci, i update může zablokovat modrá obrazovka "SmartScreen". Klikněte opět na <strong>"Další informace"</strong> a <strong>"Přesto spustit"</strong>.
+                    </div>
+
+                    <p class="text-slate-400 text-sm">Po dokončení se PhishGuard sám spustí a vy jste opět chráněni.</p>
                 </div>
             </div>
         </section>
