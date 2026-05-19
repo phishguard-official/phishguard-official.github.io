@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tutoriál pro Chromium prohlížeče | PhishGuard</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --bg:        #030712;
+    --surface:   #0f172a;
+    --surface2:  #1e293b;
+    --border:    #1e293b;
+    --blue:      #3b82f6;
+    --blue-dim:  #1d4ed8;
+    --green:     #22c55e;
+    --text:      #f1f5f9;
+    --muted:     #64748b;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 0 0 40px 0;
+  }
+
+  /* ── Header ── */
+  .header {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 32px 40px 28px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .header-icon { 
+    height: 52px; 
+    width: 52px; 
+    object-fit: contain; 
+  }
+  .header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: white;
+  }
+  .header p {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  /* ── Content ── */
+  .content {
+    max-width: 760px;
+    margin: 40px auto;
+    padding: 0 24px;
+  }
+
+  /* ── Cards ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+  }
+  .card-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .card-subtitle {
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 24px;
+    line-height: 1.6;
+  }
+
+  /* ── Browser Selection ── */
+  .browser-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .browser-btn {
+    background: var(--surface2);
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: all .2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .browser-btn:hover { border-color: var(--blue-dim); background: #1e293b80; }
+  .browser-btn.active { border-color: var(--blue); background: rgba(59, 130, 246, 0.1); }
+  .browser-icon { 
+    height: 36px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+  }
+  .browser-icon img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+  }
+  .browser-name { font-size: 13px; font-weight: 600; color: var(--text); }
+  
+  .browser-instr { display: none; }
+  .browser-instr.active { display: block; animation: fadeIn .3s ease; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Steps list ── */
+  .steps-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+  .steps-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: var(--surface2);
+    border-radius: 12px;
+    padding: 16px 18px;
+    border: 1px solid transparent;
+    transition: border-color .2s;
+  }
+  .steps-list li:hover { border-color: var(--blue); }
+  .step-icon {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    background: #1d3461;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .step-text strong { display: block; font-size: 14px; margin-bottom: 4px; }
+  .step-text span { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+  /* ── Screenshot mockup ── */
+  .mockup {
+    background: #1a1a2e;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 20px 0;
+  }
+  .mockup-bar {
+    background: #16213e;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .mockup-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .mockup-url {
+    flex: 1;
+    background: #0f172a;
+    border-radius: 6px;
+    padding: 5px 12px;
+    font-size: 11px;
+    color: var(--muted);
+    margin: 0 8px;
+    font-family: monospace;
+  }
+  .mockup-body { padding: 20px; }
+  .toggle-on {
+    width: 40px; height: 22px;
+    background: var(--green);
+    border-radius: 99px;
+    position: relative;
+  }
+  .toggle-on::after {
+    content: '';
+    position: absolute;
+    width: 16px; height: 16px;
+    background: white;
+    border-radius: 50%;
+    top: 3px; right: 3px;
+  }
+
+  /* ── Code path ── */
+  .path {
+    background: #0a0a0a;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: #a3e635;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
+  }
+  .copy-btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .copy-btn:hover { color: white; border-color: var(--blue); }
+
+</style>
+</head>
+<body>
+
+<div class="header">
+  <img class="header-icon" src="https://raw.githubusercontent.com/phishguard-official/phishguard-official.github.io/refs/heads/main/logoMark%20-%20noBCG.png" alt="PhishGuard Logo">
+  <div>
+    <h1>Instalace rozšíření</h1>
+    <p>Návod pro připojení PhishGuard Sentinel k různým prohlížečům</p>
+  </div>
+</div>
+
+<div class="content">
+  <div class="card">
+    <div class="card-title">🌐 Vyber si svůj prohlížeč</div>
+    <div class="card-subtitle">
+      Klikni na svůj webový prohlížeč pro zobrazení postupu přidání rozšíření ze složky.
+    </div>
+
+    <div class="browser-grid">
+      <div class="browser-btn active" onclick="selectBrowser('chrome', this)">
+        <div class="browser-icon"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQThW-_oApWDGICBI68uvBOQ7MehyjToOFpZg&s" alt="Chrome" style="border-radius: 50%;"></div>
+        <div class="browser-name">Chrome</div>
+      </div>
+      <div class="browser-btn" onclick="selectBrowser('edge', this)">
+        <div class="browser-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Microsoft_Edge_logo_%282019%29.svg/250px-Microsoft_Edge_logo_%282019%29.svg.png" alt="Edge"></div>
+        <div class="browser-name">Edge</div>
+      </div>
+      <div class="browser-btn" onclick="selectBrowser('opera', this)">
+        <div class="browser-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Opera_2015_icon.svg/1280px-Opera_2015_icon.svg.png" alt="Opera"></div>
+        <div class="browser-name">Opera</div>
+      </div>
+      <div class="browser-btn" onclick="selectBrowser('brave', this)">
+        <div class="browser-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Brave_lion_icon.svg/500px-Brave_lion_icon.svg.png" alt="Brave"></div>
+        <div class="browser-name">Brave</div>
+      </div>
+    </div>
+
+    <div id="instr-chrome" class="browser-instr active">
+      <ul class="steps-list">
+        <li>
+          <div class="step-icon">1️⃣</div>
+          <div class="step-text">
+            <strong>Otevři správce rozšíření v Chrome</strong>
+            <span>Zkopíruj tuto adresu, vlož ji do nového panelu v Chrome a stiskni Enter:</span>
+          </div>
+        </li>
+      </ul>
+      <div class="path">
+        <span>chrome://extensions</span>
+        <button class="copy-btn" onclick="copyText('chrome://extensions', this)">Kopírovat</button>
+      </div>
+      <ul class="steps-list" style="margin-top:16px">
+        <li>
+          <div class="step-icon">2️⃣</div>
+          <div class="step-text">
+            <strong>Zapni režim pro vývojáře</strong>
+            <span>V pravém horním rohu zapni <strong>"Režim pro vývojáře"</strong> (Developer mode).</span>
+          </div>
+        </li>
+      </ul>
+      <div class="mockup" style="margin-top:16px">
+        <div class="mockup-bar">
+          <div class="mockup-dot" style="background:#ef4444"></div>
+          <div class="mockup-dot" style="background:#f59e0b"></div>
+          <div class="mockup-dot" style="background:#22c55e"></div>
+          <div class="mockup-url">chrome://extensions</div>
+        </div>
+        <div class="mockup-body">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+            <span style="font-size:18px;font-weight:700">Rozšíření</span>
+            <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)">
+              Režim pro vývojáře
+              <div class="toggle-on"></div>
+            </div>
+          </div>
+          <div style="display:flex;gap:10px;margin-bottom:16px">
+            <div style="background:#1d4ed8;color:white;padding:7px 14px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer">📂 Načíst rozbalené rozšíření</div>
+          </div>
+        </div>
+      </div>
+      <ul class="steps-list" style="margin-top:4px">
+        <li>
+          <div class="step-icon">3️⃣</div>
+          <div class="step-text">
+            <strong>Načti lokální složku</strong>
+            <span>Klikni na <strong>"Načíst rozbalené rozšíření"</strong> a vyber složku <code style="color:#93c5fd">extension</code> ve tvé instalaci PhishGuard.</span>
+          </div>
+        </li>
+      </ul>
+      <div class="path">
+        <span id="extPath-chrome">C:\Program Files\PhishGuard Sentinel\extension</span>
+        <button class="copy-btn" onclick="copyText(document.getElementById('extPath-chrome').textContent, this)">Kopírovat</button>
+      </div>
+    </div>
+
+    <div id="instr-edge" class="browser-instr">
+      <ul class="steps-list">
+        <li>
+          <div class="step-icon">1️⃣</div>
+          <div class="step-text">
+            <strong>Otevři správce doplňků v Edge</strong>
+            <span>Zkopíruj tuto adresu, vlož ji do nového panelu v Edge a stiskni Enter:</span>
+          </div>
+        </li>
+      </ul>
+      <div class="path">
+        <span>edge://extensions</span>
+        <button class="copy-btn" onclick="copyText('edge://extensions', this)">Kopírovat</button>
+      </div>
+      <ul class="steps-list" style="margin-top:16px">
+        <li>
+          <div class="step-icon">2️⃣</div>
+          <div class="step-text">
+            <strong>Zapni režim vývojáře</strong>
+            <span>V levém dolním rohu stránky zapni <strong>"Režim vývojáře"</strong>.</span>
+          </div>
+        </li>
+      </ul>
+      <div class="mockup" style="margin-top:16px">
+        <div class="mockup-bar">
+          <div class="mockup-dot" style="background:#ef4444"></div>
+          <div class="mockup-dot" style="background:#f59e0b"></div>
+          <div class="mockup-dot" style="background:#22c55e"></div>
+          <div class="mockup-url">edge://extensions</div>
+        </div>
+        <div class="mockup-body">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+            <span style="font-size:18px;font-weight:700">Rozšíření</span>
+          </div>
+          <div style="display:flex;gap:10px;margin-bottom:16px">
+            <div style="background:#1d4ed8;color:white;padding:7px 14px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer">📂 Načíst rozbalené</div>
+          </div>
+        </div>
+      </div>
+      <ul class="steps-list" style="margin-top:4px">
+        <li>
+          <div class="step-icon">3️⃣</div>
+          <div class="step-text">
+            <strong>Načti lokální složku</strong>
+            <span>Klikni na <strong>"Načíst rozbalené"</strong> a vyber složku <code style="color:#93c5fd">extension</code> ve tvé instalaci PhishGuard.</span>
+          </div>
+        </li>
+      </ul>
+      <div class="path">
+        <span id="extPath-edge">C:\Program Files\PhishGuard Sentinel\extension</span>
+        <button class="copy-btn" onclick="copyText(document.getElementById('extPath-edge').textContent, this)">Kopírovat</button>
+      </div>
+    </div>
+
+    <div id="instr-opera" class="browser-instr">
+      <ul class="steps-list">
+        <li>
+          <div class="step-icon">1️⃣</div>
+          <div class="step-text">
+            <strong>Otevři správce rozšíření v Opeře</strong>
+            <span>Zkopíruj tuto adresu, vlož ji do nového panelu v Opeře a stiskni Enter:</span>
+          </div>
+        </li>
+      </ul>
+      <div class="path">
+        <span>opera://extensions</span>
+        <button class="copy-btn" onclick="copyText('opera://extensions', this)">Kopírovat</button>
+      </div>
+      <ul class="steps-list" style="margin-top:16px">
+        <li>
+          <div class="step-icon">2️⃣</div>
+          <div class="step-text">
+            <strong>Zapni režim pro vývojáře</strong>
+            <span>V pravém horním rohu zapni <strong>"Režim pro vývojáře"</strong>.</span>
+          </div>
+        </li>
+      </ul>
+      <div class="mockup" style="margin-top:16px">
+        <div class="mockup-bar">
+          <div class="mockup-dot" style="background:#ef4444"></div>
+          <div class="mockup-dot" style="background:#f59e0b"></div>
+          <div class="mockup-dot" style="background:#22c55e"></div>
+          <div class="mockup-url">opera://extensions</div>
+        </div>
+        <div class="mockup-body">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+            <span style="font-size:18px;font-weight:700">Rozšíření</span>
+            <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)">
+              Režim pro vývojáře
+              <div class="toggle-on"></div>
+            </div>
+          </div>
+          <div style="display:flex;gap:10px;margin-bottom:16px">
+            <div style="background:#1d4ed8;color:white;padding:7px 14px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer">📂 Načíst rozbalené rozšíření</div>
+          </div>
+        </div>
+      </div>
+      <ul class="steps-list" style="margin-top:4px">
+        <li>
+          <div class="step-icon">3️⃣</div>
+          <div class="step-text">
+            <strong>Načti lokální složku</strong>
+            <span>Klikni na <strong>"Načíst rozbalené rozšíření"</strong> a vyber složku <code style="color:#93c5fd">extension</code> ve tvé instalaci PhishGuard.</span>
+          </div>
+        </li>
+      </ul>
+      <div class="path">
+        <span id="extPath-opera">C:\Program Files\PhishGuard Sentinel\extension</span>
+        <button class="copy-btn" onclick="copyText(document.getElementById('extPath-opera').textContent, this)">Kopírovat</button>
+      </div>
+    </div>
+
+    <div id="instr-brave" class="browser-instr">
+      <ul class="steps-list">
+        <li>
+          <div class="step-icon">1️⃣</div>
+          <div class="step-text">
+            <strong>Otevři správce rozšíření v Brave</strong>
+            <span>Zkopíruj tuto adresu, vlož ji do nového panelu v Brave a stiskni Enter:</span>
+          </div>
+        </li>
+      </ul>
+      <div class="path">
+        <span>brave://extensions</span>
+        <button class="copy-btn" onclick="copyText('brave://extensions', this)">Kopírovat</button>
+      </div>
+      <ul class="steps-list" style="margin-top:16px">
+        <li>
+          <div class="step-icon">2️⃣</div>
+          <div class="step-text">
+            <strong>Zapni režim pro vývojáře</strong>
+            <span>V pravém horním rohu zapni <strong>"Režim pro vývojáře"</strong>.</span>
+          </div>
+        </li>
+      </ul>
+      <div class="mockup" style="margin-top:16px">
+        <div class="mockup-bar">
+          <div class="mockup-dot" style="background:#ef4444"></div>
+          <div class="mockup-dot" style="background:#f59e0b"></div>
+          <div class="mockup-dot" style="background:#22c55e"></div>
+          <div class="mockup-url">brave://extensions</div>
+        </div>
+        <div class="mockup-body">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+            <span style="font-size:18px;font-weight:700">Rozšíření</span>
+            <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)">
+              Režim pro vývojáře
+              <div class="toggle-on"></div>
+            </div>
+          </div>
+          <div style="display:flex;gap:10px;margin-bottom:16px">
+            <div style="background:#1d4ed8;color:white;padding:7px 14px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer">📂 Načíst rozbalené rozšíření</div>
+          </div>
+        </div>
+      </div>
+      <ul class="steps-list" style="margin-top:4px">
+        <li>
+          <div class="step-icon">3️⃣</div>
+          <div class="step-text">
+            <strong>Načti lokální složku</strong>
+            <span>Klikni na <strong>"Načíst rozbalené rozšíření"</strong> a vyber složku <code style="color:#93c5fd">extension</code> ve tvé instalaci PhishGuard.</span>
+          </div>
+        </li>
+      </ul>
+      <div class="path">
+        <span id="extPath-brave">C:\Program Files\PhishGuard Sentinel\extension</span>
+        <button class="copy-btn" onclick="copyText(document.getElementById('extPath-brave').textContent, this)">Kopírovat</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function selectBrowser(browserName, element) {
+    const buttons = document.querySelectorAll('.browser-btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    
+    element.classList.add('active');
+
+    const instructions = document.querySelectorAll('.browser-instr');
+    instructions.forEach(instr => instr.classList.remove('active'));
+
+    document.getElementById('instr-' + browserName).classList.add('active');
+  }
+
+  function copyText(text, btn) {
+    navigator.clipboard.writeText(text).then(() => {
+      const orig = btn.textContent;
+      btn.textContent = 'Zkopírováno!';
+      btn.style.color = '#22c55e';
+      setTimeout(() => {
+        btn.textContent = orig;
+        btn.style.color = '';
+      }, 1500);
+    });
+  }
+</script>
+</body>
+</html>
